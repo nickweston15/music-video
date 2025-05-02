@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now Playing on Spotify</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #282828;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .track-info {
+            text-align: center;
+        }
+        .album-art {
+            width: 300px;
+            height: 300px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .track-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1DB954;
+        }
+        .artist-name {
+            font-size: 18px;
+            color: #b3b3b3;
+            margin-bottom: 5px;
+        }
+        .album-name {
+            font-size: 16px;
+            color: #b3b3b3;
+        }
+        .error {
+            color: #ff4444;
+            text-align: center;
+            padding: 20px;
+        }
+        .login-button {
+            background-color: #1DB954;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .login-button:hover {
+            background-color: #1ed760;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% elif track %}
+            <div class="track-info">
+                {% if track.image_url %}
+                    <img src="{{ track.image_url }}" alt="Album Art" class="album-art">
+                {% endif %}
+                <div class="track-name">{{ track.name }}</div>
+                <div class="artist-name">{{ track.artist }}</div>
+                <div class="album-name">{{ track.album }}</div>
+            </div>
+        {% else %}
+            <div class="error">
+                No track information available
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
