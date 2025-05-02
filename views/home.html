@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Now Playing on Spotify</title>
+    <script>
+        // Only refresh if we're showing track information
+        {% if track %}
+        setTimeout(function() {
+            window.location.reload();
+        }, 10000); // Refresh every 10 seconds
+        {% endif %}
+    </script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
